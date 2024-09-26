@@ -62,7 +62,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Future Improvements
 
-Making it capable for administration purposes (oracle database administration via text)
+- Making it capable for administration purposes (oracle database administration via text).
+- Adding a validator pipeline to validate the generated queries before executing them.
 
 ## Disclaimer
 
