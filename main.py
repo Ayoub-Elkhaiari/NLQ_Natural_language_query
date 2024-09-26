@@ -13,7 +13,9 @@ load_dotenv()
 
 oracle = Oracle(os.getenv("ACCOUNT"), os.getenv("PASSWORD"))
 
-table_info = oracle.get_table_schema("student")
+table = input("Enter the table name: ")
+
+table_info = oracle.get_table_schema(table)
 
 
 model = LLM()
@@ -35,17 +37,16 @@ SQL Query:
 """
 )
 
-# # Create an LLMChain
-# text_to_sql_chain = LLMChain(llm=model.model, prompt=prompt_template)
+# Create an LLMChain
+text_to_sql_chain = LLMChain(llm=model.model, prompt=prompt_template)
 
+question = input("Enter the text here")
 
-# question = "What is the average salary of employees in the Sales department?"
-
-# # Generate SQL query
-# result = text_to_sql_chain.run(table_info=table_info, question=question)
+# Generate SQL query
+query = text_to_sql_chain.run(table_info=table_info, question=question)
 
 # print("Generated SQL Query:")
-# print(result)
+# print(query)
 
-print(table_info)
-oracle.execute_query("ALTER TABLE student ADD age number;")
+# print(table_info)
+oracle.execute_query(query)
